@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>新闻</title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/web/app_mui.css" />
+
+		<script type="text/javascript" src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/art-template.js"></script>
+		<script type="text/javascript" src="../js/mui.pullToRefresh.js" ></script>
+		<script type="text/javascript" src="../js/mui.pullToRefresh.material.js" ></script>
+	</head>
+
+	<body>
+		<script type="text/html" id="news_list_template">
+			{{each newsList as news i}}
+			<li class="mui-table-view-cell mui-media"  data-newsbeanid="{{news.id}}">
+				<a href="javascript:;" class="mui-navigate-right">
+					<div class="mui-media-body">
+						<div class="mui-table-cell mui-col-xs-10">
+							<img class="mui-media-object mui-pull-left" src="{{news.faceUrl}}">
+							<h4 class="mui-ellipsis">{{news.title}}</h4>
+							<h5>来源：{{news.source}}</h5>
+							<p class="mui-h6 mui-pull-left">{{news.pubDate}}</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative">
+					<a class="mui-control-item" href="#item1mobile">推荐</a>
+					<a class="mui-control-item" href="#item2mobile">天文</a>
+					<a class="mui-control-item" href="#item3mobile">科技</a>
+					<a class="mui-control-item" href="#item4mobile">社会</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div class=" mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/web/news_data.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+
+/*hui start*/
+
+
+/*hui end*/
+
+.mui-bar-nav {
+	background-color: #EA2000;
+}
+
+.mui-title {
+	color: #FFF5F4;
+}
+
+h4 {
+	font-size: 16px;
+	line-height: 21px;
+	font-weight: 400;
+}
+
+h5 {
+	font-size: 14px;
+	color: #777;
+}
+
+.mui-media .mui-media-object {
+	line-height: 52px;
+	max-width: 100px;
+	width: 100px;
+	height: 68px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1;
+	margin-top: 6px;
+	margin-bottom: 5px;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 p {
+	font-size: 18px;
+	color: #222222;
+}
+
+/*返回箭头颜色*/
+.mui-bar .mui-btn-link{
+	color: #DDDDDD;
+}
+
+/*下拉刷新显示位置*/
+
+.mui-pull-top-pocket {
+	top: 0;
+}
+
+
+/*****************************/
+
+.mui-pull-top-tips {
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	margin-left: -25px;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	z-index: 1;
+}
+
+.mui-pull-top-wrapper {
+	width: 42px;
+	height: 42px;
+	display: block;
+	text-align: center;
+	background-color: #efeff4;
+	border: 1px solid #ddd;
+	border-radius: 25px;
+	background-clip: padding-box;
+	box-shadow: 0 4px 10px #bbb;
+	overflow: hidden;
+}
+
+.mui-pull-top-tips.mui-transitioning {
+	-webkit-transition-duration: 200ms;
+	transition-duration: 200ms;
+}
+
+.mui-pull-top-tips .mui-pull-loading {
+	/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+	margin: 0;
+}
+
+.mui-pull-top-wrapper .mui-icon,
+.mui-pull-top-wrapper .mui-spinner {
+	margin-top: 7px;
+}
+
+.mui-pull-top-wrapper .mui-icon.mui-reverse {
+	/*-webkit-transform: rotate(180deg) translateZ(0);*/
+}
+
+.mui-pull-bottom-tips {
+	text-align: center;
+	background-color: #efeff4;
+	font-size: 15px;
+	line-height: 40px;
+	color: #777;
+}
+
+.mui-pull-top-canvas {
+	overflow: hidden;
+	background-color: #fafafa;
+	border-radius: 40px;
+	box-shadow: 0 4px 10px #bbb;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.mui-pull-top-canvas canvas {
+	width: 40px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+	background-color: #efeff4;
+}
