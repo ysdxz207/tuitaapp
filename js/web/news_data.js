@@ -99,22 +99,24 @@ mui.init({
 
 	//
 	mui(".mui-table-view").on("tap", ".mui-table-view-cell", function() {
-		var w = plus.nativeUI.showWaiting("加载中...");
+		//var w = plus.nativeUI.showWaiting("加载中...");
 
 		var newsBeanId = this.getAttribute('data-newsbeanid');
+		var newsChannelId = this.getAttribute('data-newschannelid');
 		//显示启动导航
 		mui.openWindow({
 			id: 'news_detail',
 			url: 'news_detail.html',
 			show: {
-				aniShow: 'fade-in',
+				aniShow: 'slide-in-right',//fade-in
 				duration: 300
 			},
 			extras: {
-				newsBeanId: newsBeanId
+				newsBeanId: newsBeanId,
+				newsChannelId: newsChannelId
 			},
 			waiting: {
-				autoShow: false
+				autoShow: true
 			}
 		});
 	});

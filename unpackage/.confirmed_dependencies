@@ -44,7 +44,9 @@
 			"fonts/mui.ttf",
 			"css/web/app_mui.css"
 		],
-		"refer": []
+		"refer": [
+			"html/news.html"
+		]
 	},
 	"html/orders.html": {
 		"resources": [

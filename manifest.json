@@ -240,7 +240,9 @@
 					"fonts/mui.ttf",
 					"css/web/app_mui.css"
 				],
-				"refer": [],
+				"refer": [
+					"html/news.html"
+				],
 				"priority": 0
 			},
 			"html/orders.html": {

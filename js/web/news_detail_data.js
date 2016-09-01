@@ -1,6 +1,7 @@
 mui.plusReady(function() {
 	var self = plus.webview.currentWebview();
 	var newsBeanId = self.newsBeanId;
+	var newsChannelId = self.newsChannelId;
 	console.log("newsBeanId====" + newsBeanId);
 	loadNewsDetail(newsBeanId);
 
@@ -24,7 +25,7 @@ mui.plusReady(function() {
 				console.error("ajax error type =" + type);
 			}
 		});
-		plus.nativeUI.closeWaiting();
+		//plus.nativeUI.closeWaiting();
 	};
 
 });

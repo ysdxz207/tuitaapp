@@ -20,10 +20,10 @@
 	<body>
 		<script type="text/html" id="news_list_template">
 			{{each newsList as news i}}
-			<li class="mui-table-view-cell mui-media"  data-newsbeanid="{{news.id}}">
+			<li class="mui-table-view-cell mui-media"  data-newsbeanid="{{news.id}}" data-newschannelid="{{news.channelId}}">
 				<a href="javascript:;" class="mui-navigate-right">
 					<div class="mui-media-body">
-						<div class="mui-table-cell mui-col-xs-10">
+						<div class="mui-table-cell mui-col-xs-12 mui-pull-right">
 							<img class="mui-media-object mui-pull-left" src="{{news.faceUrl}}">
 							<h4 class="mui-ellipsis">{{news.title}}</h4>
 							<h5>来源：{{news.source}}</h5>
