@@ -1,5 +1,5 @@
 {
-	"base_url": "http://192.168.0.104:2336/",
-	"news_url": "http://192.168.0.104:2336/index.ajax",
-	"news_detail_url": "http://192.168.0.104:2336/newsDetail.ajax"
+	"base_url": "http://12060e2b.nat123.net/",
+	"news_url": "http://12060e2b.nat123.net/index.ajax",
+	"news_detail_url": "http://12060e2b.nat123.net/newsDetail.ajax"
 }

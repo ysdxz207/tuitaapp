@@ -1,0 +1,5 @@
+{
+	"base_url": "http://192.168.0.103:2336/tuitanews/",
+	"news_url": "http://192.168.0.103:2336/tuitanews/index.ajax",
+	"news_detail_url": "http://192.168.0.103:2336/tuitanews/newsDetail.ajax"
+}

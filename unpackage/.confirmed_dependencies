@@ -1,57 +1,77 @@
 {
-	"index.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"html/news.html",
-			"css/web/app_mui.css",
-			"json/ajax_url.json",
-			"js/web/conf_loader.js"
-		],
-		"refer": [
-			"html/orders.html",
-			"html/me.html",
-			"html/news.html"
-		]
-	},
-	"html/news.html": {
-		"resources": [
-			"js/web/data.js",
-			"js/art-template.js",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/web/app_mui.css",
-			"css/app_mui.css",
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js",
-			"js/mui.js",
-			"js/mui.pullrefresh.js",
-			"js/web/news_data.js"
-		],
-		"refer": [
-			"html/news_detail.html"
-		]
-	},
-	"html/news_detail.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/web/news_detail-data.js",
-			"js/art-template.js",
-			"js/web/news_detail_data.js",
-			"fonts/mui.ttf",
-			"css/web/app_mui.css"
-		],
-		"refer": [
-			"html/news.html"
-		]
-	},
-	"html/orders.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "html/news.html",
+      "css/web/app_mui.css",
+      "json/ajax_url.json",
+      "js/web/conf_loader.js",
+      "js/mui.js",
+      "json/app_conf.json"
+    ],
+    "refer": [
+      "html/orders.html",
+      "html/me.html",
+      "html/news.html",
+      "html/news_detail.html"
+    ]
+  },
+  "html/news.html": {
+    "resources": [
+      "js/web/data.js",
+      "js/art-template.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/web/app_mui.css",
+      "css/app_mui.css",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/mui.js",
+      "js/mui.pullrefresh.js",
+      "js/web/news_data.js",
+      "css/mui.css",
+      "images/no_pic500X340.png",
+      "js/web/hpb.js",
+      "js/html5sql.js",
+      "js/web/remote.js",
+      "js/web/ajax_data.js",
+      "js/web/app.js",
+      "js/web/data_util.js",
+      "html/news_detail.html"
+    ],
+    "refer": [
+      "html/news_detail.html"
+    ]
+  },
+  "html/news_detail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/web/news_detail-data.js",
+      "js/art-template.js",
+      "js/web/news_detail_data.js",
+      "fonts/mui.ttf",
+      "css/web/app_mui.css",
+      "js/web/hpb.js",
+      "js/html5sql.js",
+      "js/web/data_util.js",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/web/news_data.js",
+      "js/mui.js"
+    ],
+    "refer": [
+      "html/news.html"
+    ]
+  },
+  "html/orders.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  }
 }

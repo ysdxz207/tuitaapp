@@ -28,10 +28,14 @@
 			</a>
 		</nav>
 
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/web/conf_loader.js" ></script>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript" src="js/web/conf_loader.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			mui.init();
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#ea2000' //设置状态栏颜色,仅iOS可用
+
+			});
 			//设置默认打开首页显示的子页序号；
 			var Index = 0;
 			//把子页的路径写在数组里面
@@ -39,6 +43,7 @@
 
 			//所有的plus-*方法写在mui.plusReady中或者后面。
 			mui.plusReady(function() {
+				//plus.nativeUI.showWaiting("加载中...");
 				void plus.navigator.setStatusBarBackground('#FF0000');
 				//获取当前页面所属的Webview窗口对象
 				var self = plus.webview.currentWebview();
@@ -60,8 +65,9 @@
 					self.append(sub);
 
 				}
+
 			});
-			
+
 			//当前激活选项
 			var activeTab = subpages[Index],
 				title = document.querySelector(".mui-title");
@@ -81,7 +87,6 @@
 				//更改当前活跃的选项卡
 				activeTab = targetTab;
 			});
-			
 		</script>
 	</body>
 

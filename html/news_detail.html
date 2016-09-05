@@ -3,12 +3,13 @@
 
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.min.css" />
 		<link rel="stylesheet" href="../css/web/app_mui.css" />
-		<script type="text/javascript" src="../js/art-template.js"></script>
-		<script src="../js/mui.min.js"></script>
 	</head>
 
 	<body>
@@ -18,7 +19,7 @@
 				<h3 class="mui-pull-left">{{news.title}}</h3>
 				<h5 class="mui-content-padded mui-pull-left">来源:{{news.source}}</h5>
 				<h4 class="mui-pull-left">
-					{{#news.contentWithImgs}}
+					{{#news.html}}
 				</h4>
 			</div>
 		</script>
@@ -33,10 +34,18 @@
 
 		</div>
 
-		<script type="text/javascript" src="../js/web/news_detail_data.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
+		<div class="sk-folding-cube">
+			<div class="sk-cube1 sk-cube"></div>
+			<div class="sk-cube2 sk-cube"></div>
+			<div class="sk-cube4 sk-cube"></div>
+			<div class="sk-cube3 sk-cube"></div>
+		</div>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/art-template.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/html5sql.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/hpb.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/data_util.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/news_detail_data.js"></script>
 	</body>
 
 </html>

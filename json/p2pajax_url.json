@@ -1,0 +1,5 @@
+{
+	"base_url": "http://3505ceb1.all123.net:2336/",
+	"news_url": "http://3505ceb1.all123.net:2336/index.ajax",
+	"news_detail_url": "http://3505ceb1.all123.net:2336/newsDetail.ajax"
+}

@@ -11,23 +11,22 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<link rel="stylesheet" href="../css/web/app_mui.css" />
 
-		<script type="text/javascript" src="../js/mui.js"></script>
-		<script type="text/javascript" src="../js/art-template.js"></script>
-		<script type="text/javascript" src="../js/mui.pullToRefresh.js" ></script>
-		<script type="text/javascript" src="../js/mui.pullToRefresh.material.js" ></script>
 	</head>
 
 	<body>
 		<script type="text/html" id="news_list_template">
 			{{each newsList as news i}}
-			<li class="mui-table-view-cell mui-media"  data-newsbeanid="{{news.id}}" data-newschannelid="{{news.channelId}}">
+			<li id="{{news.id}}" class="mui-table-view-cell mui-media" data-newschannelid="{{news.channelId}}">
 				<a href="javascript:;" class="mui-navigate-right">
 					<div class="mui-media-body">
 						<div class="mui-table-cell mui-col-xs-12 mui-pull-right">
-							<img class="mui-media-object mui-pull-left" src="{{news.faceUrl}}">
+							{{if news.faceUrl}}
+							<img class="mui-media-object mui-pull-left" src="{{news.faceUrl}}"> {{else}}
+							<img class="mui-media-object mui-pull-left" src="../images/no_pic500X340.png"> {{/if}}
+
 							<h4 class="mui-ellipsis">{{news.title}}</h4>
 							<h5>来源：{{news.source}}</h5>
-							<p class="mui-h6 mui-pull-left">{{news.pubDate}}</p>
+							<p class="mui-h6 mui-pull-left">{{dateFormat(news.pubDate, 'MM-dd hh:mm:ss')}}</p>
 						</div>
 					</div>
 				</a>
@@ -45,10 +44,10 @@
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>
 				<div class="mui-slider-group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div class=" mui-scroll-wrapper">
+						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
@@ -57,7 +56,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
@@ -66,7 +65,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
@@ -75,7 +74,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
@@ -83,7 +82,64 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="../js/web/news_data.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/art-template.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.pullToRefresh.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/html5sql.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/hpb.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/data_util.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/web/news_data.js"></script>
+		<script type="text/javascript">
+			
+			/** 
+			 * 对日期进行格式化， 
+			 * @param date 要格式化的日期 
+			 * @param format 进行格式化的模式字符串
+			 *     支持的模式字母有： 
+			 *     y:年, 
+			 *     M:年中的月份(1-12), 
+			 *     d:月份中的天(1-31), 
+			 *     h:小时(0-23), 
+			 *     m:分(0-59), 
+			 *     s:秒(0-59), 
+			 *     S:毫秒(0-999),
+			 *     q:季度(1-4)
+			 * @return String
+			 * @author yanis.wang
+			 * @see	http://yaniswang.com/frontend/2013/02/16/dateformat-performance/
+			 */
+			template.helper('dateFormat', function (date, format) {
+			
+			    date = new Date(date);
+			
+			    var map = {
+			        "M": date.getMonth() + 1, //月份 
+			        "d": date.getDate(), //日 
+			        "h": date.getHours(), //小时 
+			        "m": date.getMinutes(), //分 
+			        "s": date.getSeconds(), //秒 
+			        "q": Math.floor((date.getMonth() + 3) / 3), //季度 
+			        "S": date.getMilliseconds() //毫秒 
+			    };
+			    format = format.replace(/([yMdhmsqS])+/g, function(all, t){
+			        var v = map[t];
+			        if(v !== undefined){
+			            if(all.length > 1){
+			                v = '0' + v;
+			                v = v.substr(v.length-2);
+			            }
+			            return v;
+			        }
+			        else if(t === 'y'){
+			            return (date.getFullYear() + '').substr(4 - all.length);
+			        }
+			        return all;
+			    });
+			    return format;
+			});
+
+		</script>
 	</body>
 
 </html>
