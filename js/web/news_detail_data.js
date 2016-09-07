@@ -2,7 +2,11 @@ mui.init({
 	gestureConfig: {
 		doubletap: true
 	},
-	swipeBack: true //启用右滑关闭功能
+	swipeBack: true, //启用右滑关闭功能
+	beforeback: function (){
+		//显示详情页加载中
+		document.getElementById('news_detail_loading').className = 'sk-folding-cube show';
+	}
 });
 
 (function($) {
@@ -13,10 +17,12 @@ mui.init({
 
 			//获得事件参数
 			var id = event.detail.id;
-			mui.scrollTo(0, 50); //50毫秒内滚动到顶部
+			mui.scrollTo(0, 0); //0毫秒内滚动到顶部
 			//根据id向服务器请求新闻详情
 			//loadNewsDetail(id);
 			$.getNewsDetail(id);
+			//关闭详情页加载中
+			document.getElementById('news_detail_loading').className = 'sk-folding-cube hide';
 		});
 
 		function loadNewsDetail(newsBeanId) {

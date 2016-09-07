@@ -1,6 +1,10 @@
 (function($) {
 	var NEWS_LIST_TEMPLATE_ID = 'news_list_template';
 	var templateContainers = $('.mui-table-view');
+	var KEY_LATEST_PUB_NEWS_DATE = 'KEY_LATEST_PUB_NEWS_DATE';
+	
+	
+
 	$.getRemote = function(url, params, success, error) {
 		console.log('[###]从服务器获取数据,url=' + url);
 		error = error || $.noop;
@@ -23,53 +27,45 @@
 	 * @param {Object} channelId
 	 * @param {Object} pageOffset
 	 */
-	$.getNewsFromWebsql = function(newsChannelId, pageOffset) {
+	$.getNewsFromWebsql = function(newsChannelId, hasNew, noDataCallback) {
 			hpb.getNewsListFromWebsql({
 				"newsChannelId": newsChannelId,
-				"pageOffset": pageOffset
+				"latestPubNewsDate": $.getLatestPubNewsDate(newsChannelId)
 			}, function(data) {
-				var html = template(NEWS_LIST_TEMPLATE_ID, data);
-				templateContainers[newsChannelId - 1].innerHTML = html + templateContainers[newsChannelId - 1].innerHTML;
-				console.timeEnd('从本地数据库获取数据到结束时间');
+				if(!data || !data.newsList || data.newsList.length == 0) {
+					noDataCallback(true);
+					return;
+				};
+				$.reloadNews(newsChannelId, data);
+				
+				if(hasNew) {
+					mui.toast('更新了' + hasNew + '条');
+				} else {
+					console.log('[###]没有新数据');
+				};
+				noDataCallback(false);
 			}, function(error, failingQuery) {
 				console.error('[从本地数据库查询新闻列表错误]:' + error.message + ":" + failingQuery);
 			});
 		}
 		/**
 		 * 从服务器获取数据
-		 * @param {Object} channelId
+		 * @param {Object} newsChannelId
 		 * @param {Object} pageOffset
 		 */
-	$.getNewsFromRemote = function(channelId, pageOffset, obj, type) {
+	$.getNewsFromRemote = function(newsChannelId, successCallback) {
 		//获取新闻列表，存储数据库
-		hpb.getNewsListFromRemote(channelId, pageOffset, function(data) {
-			if(data) {
-				console.info('data=======' + data);
-				var html = template(NEWS_LIST_TEMPLATE_ID, data);
-				templateContainers[channelId - 1].innerHTML = html + templateContainers[channelId - 1].innerHTML;
-				plus.nativeUI.toast('更新了' + data.newsList.length + '条');
-				console.info('[===]haseNew=' + data.newsList.length);
-			} else {
-				console.log('[###]没有新数据');
-			}
-			$.endPullRefresh(obj, type);
+		hpb.getNewsListFromRemote(newsChannelId, function(hasNew) {
+			$.getNewsFromWebsql(newsChannelId, hasNew, function() {
+
+			});
+			
+			successCallback(true);
 		}, function(error) {
 			console.error('[从服务器获取新闻错误]:' + error);
 		});
 	};
-	/**
-	 * 结束下拉刷新(动画)
-	 * @param {Object} obj
-	 * @param {Object} type
-	 */
-	$.endPullRefresh = function(obj, type) {
-		if(type == "up") {
-			//pageOffset += pageSize;
-			obj.endPullUpToRefresh();
-		} else if(type == "down") {
-			obj.endPullDownToRefresh();
-		}
-	};
+
 	/**
 	 * 从本地数据库查询新闻详情
 	 * @param {Object} id
@@ -81,6 +77,7 @@
 		hpb.getNewsById(id, function(data) {
 			var html = template('news_detail_template', data);
 			document.getElementById('mui_content').innerHTML = html;
+			
 		}, function(error, failingQuery) {
 			console.error('[从本地数据库查询新闻详情错误]:' + error.message + ":" + failingQuery);
 		});
@@ -95,9 +92,37 @@
 		mui.plusReady(function() {
 			if(plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_WIFI) {
 				setTimeout(function() {
-					$.getNewsFromRemote(newsChannelId, pageOffset);
+					$.getNewsFromRemote(newsChannelId, function() {
+
+					});
 				}, 100);
 			};
 		});
-	}
+	};
+	/**
+	 * 更新tab内容
+	 * @param {Object} newsChannelId
+	 * @param {Object} data
+	 */
+	$.reloadNews = function(newsChannelId, data) {
+		//更新html
+		var html = template(NEWS_LIST_TEMPLATE_ID, data);
+		//获取当前页最新发布时间
+		if($.getLatestPubNewsDate(newsChannelId) === Number.MAX_VALUE && data.newsList && data.newsList.length > 0) {
+			templateContainers[newsChannelId - 1].innerHTML = html;
+		} else {
+			templateContainers[newsChannelId - 1].innerHTML += html;
+		};
+		latestPubNewsDate = data.newsList[data.newsList.length - 1].pubDate;
+		sessionStorage.setItem(KEY_LATEST_PUB_NEWS_DATE + newsChannelId, latestPubNewsDate);
+	};
+	/**
+	 * 获取频道新闻最早发布时间
+	 * @param {Object} newsChannelId
+	 */
+	$.getLatestPubNewsDate = function(newsChannelId){
+		//初始化频道新闻最早发布时间
+		var tmp = sessionStorage.getItem(KEY_LATEST_PUB_NEWS_DATE + newsChannelId);
+		return tmp ? parseInt(tmp) : Number.MAX_VALUE;
+	};
 })(mui);

@@ -17,9 +17,9 @@
 		<script type="text/html" id="news_detail_template">
 			<div class="mui-block">
 				<h3 class="mui-pull-left">{{news.title}}</h3>
-				<h5 class="mui-content-padded mui-pull-left">来源:{{news.source}}</h5>
+				<h5 class="mui-content-padded mui-pull-left">来源:<a href="{{news.link}}" target="_blank">{{news.source}}</a></h5>
 				<h4 class="mui-pull-left">
-					{{#news.html}}
+					{{#news.html || news.contentWithImgs || news.content || news.desc}}
 				</h4>
 			</div>
 		</script>
@@ -34,7 +34,7 @@
 
 		</div>
 
-		<div class="sk-folding-cube">
+		<div class="sk-folding-cube" id="news_detail_loading">
 			<div class="sk-cube1 sk-cube"></div>
 			<div class="sk-cube2 sk-cube"></div>
 			<div class="sk-cube4 sk-cube"></div>

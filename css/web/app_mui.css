@@ -147,7 +147,12 @@ h4 img {
 
 
 /*载入动画 开始*/
-
+.show {
+	display: block;
+}
+.hide {
+	display: none;
+}
 .sk-folding-cube {
 	margin: 100px auto;
 	width: 40px;
