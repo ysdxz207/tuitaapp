@@ -6,10 +6,7 @@ mui.plusReady(function() {
 	 * 服务器地址配置
 	 */
 	mui.getJSON('json/ajax_url.json', {}, function(data) {
-		localStorage.setItem("BASE_URL", data.base_url);
-		localStorage.setItem("NEWS_URL", data.news_url);
-		localStorage.setItem("NEWS_DETAIL_URL", data.news_detail_url);
-		console.log('[conf]BASE_URL=' + data.base_url);
+		localStorage.setItem("API_URL", data.api_url);
 	});
 	/**
 	 * app配置

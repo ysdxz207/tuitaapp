@@ -9,10 +9,12 @@
 		console.log('[###]从服务器获取数据,url=' + url);
 		error = error || $.noop;
 		$.ajax({
-			data: params,
-			type: "get",
+			data: JSON.stringify(params),
+			type: "POST",
 			url: url,
 			dataType: 'json',
+			processData: false,
+			//'Content-Type':'application/json',
 			success: function(response) {
 				if(!response) {
 					return error();

@@ -3,7 +3,7 @@ window.hpb = {};
 	var INIT = localStorage.getItem('INIT');
 	var DB_VERSION_NUMBER = '1.0';
 	var SQL_TABLE = 'DROP TABLE IF EXISTS news;CREATE TABLE news (id INTEGER PRIMARY KEY, newsChannelId INTEGER, title TEXT,desc TEXT,content TEXT,contentWithImgs TEXT,html TEXT,source TEXT,faceUrl TEXT,pubDate INTEGER);';
-	var NEWS_URL = localStorage.getItem("NEWS_URL");
+	var API_URL = localStorage.getItem("API_URL");
 	var PAGESIZE = localStorage.getItem("PAGESIZE");
 	var KEY_NEWS_LAST_PUB_TIME = 'KEY_NEWS_LAST_PUB_TIME';
 	var KEY_ISFIRST = 'KEY_ISFIRST';//tab 是否第一次加载
@@ -47,15 +47,19 @@ window.hpb = {};
 			successCallback(false);
 			return;
 		};
-
+		
+		var params = {};
+		params.action = "newsAction";
+		params.method = "getNewsList";
+		params.data = {};
+		params.data.pageCurrent = 1;
+		params.data.pageSize = PAGESIZE;
+		params.data.newsChannelId = newsChannelId;
+		
 		//从服务器获取数据
-		$.getRemote(NEWS_URL, {
-			pageOffset: 0,
-			pageSize: PAGESIZE,
-			newsChannelId: newsChannelId
-		}, function(remote) {
-			console.log('[###]从服务器获取数据,条数=' + remote.newsList.length);
-			if(remote.newsList.length > 0) {
+		$.getRemote(API_URL, params, function(remote) {
+			console.log('[###]从服务器获取数据,条数=' + remote.list.length);
+			if(remote.list.length > 0) {
 				var newsList = [];
 				newsList.reverse();
 				
@@ -64,7 +68,7 @@ window.hpb = {};
 				//获取本地当前频道新闻最后发布时间
 				var lastPubTime = parseInt(lastPubDate ? lastPubDate : 0);
 				console.log('[===][缓存]新闻最后发布时间(newsChannelId=' + newsChannelId + ')：' + lastPubTime);
-				$.each(remote.newsList, function(index, news) {
+				$.each(remote.list, function(index, news) {
 					var pubDate = hpb.getDateTime(news.pubDate);
 					if(pubDate > lastPubTime) {
 						newsList.push({
